@@ -9,8 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
   var test = (localStorage.getItem('users_bd')).replace("[","")
   var test = test.replace("]","")
-  test = test.replace("},{",",")
-  test = test.replace("},{",",")
+  test = test.replaceAll("},{",",")
   test = JSON.parse(test)
 
   return (
