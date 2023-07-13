@@ -7,10 +7,15 @@ import * as C from "./styles";
 const Home = () => {
   const { signout } = useAuth();
   const navigate = useNavigate();
+  var test = (localStorage.getItem('users_bd')).replace("[","")
+  var test = test.replace("]","")
+  test = test.replace("},{",",")
+  test = test.replace("},{",",")
+  test = JSON.parse(test)
 
   return (
     <C.Container>
-      <C.Title>Home</C.Title>
+      <C.Title>Olá {test.name} 😈</C.Title>
       <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
         Sair
       </Button>

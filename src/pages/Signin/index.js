@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import LargeLogo from "../../components/LargeLogo"
+import SmallLogo from "../../components/SmallLogo";
 
 const Signin = () => {
   const { signin } = useAuth();
@@ -31,8 +33,9 @@ const Signin = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
       <C.Content>
+      <SmallLogo/>
+      <C.Title>ENTRAR</C.Title>
         <Input
           type="email"
           placeholder="Digite seu E-mail"
@@ -54,6 +57,7 @@ const Signin = () => {
           </C.Strong>
         </C.LabelSignup>
       </C.Content>
+      <LargeLogo />
     </C.Container>
   );
 };

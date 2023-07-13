@@ -4,8 +4,11 @@ import Button from "../../components/Button";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import LargeLogo from "../../components/LargeLogo"
+import SmallLogo from "../../components/SmallLogo";
 
 const Signup = () => {
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [senha, setSenha] = useState("");
@@ -15,7 +18,7 @@ const Signup = () => {
   const { signup } = useAuth();
 
   const handleSignup = () => {
-    if (!email | !emailConf | !senha) {
+    if (!email | !emailConf | !senha | !name) {
       setError("Preencha todos os campos");
       return;
     } else if (email !== emailConf) {
@@ -23,7 +26,7 @@ const Signup = () => {
       return;
     }
 
-    const res = signup(email, senha);
+    const res = signup(email, senha, name);
 
     if (res) {
       setError(res);
@@ -36,10 +39,17 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
       <C.Content>
+      <SmallLogo/>
+      <C.Title>CADASTRAR</C.Title>
         <Input
-          type="email"
+          type="text"
+          placeholder="Digite seu nome"
+          value={name}
+          onChange={(e) => [setName(e.target.value), setError("")]}
+        />
+        <Input
+          type="text"
           placeholder="Digite seu E-mail"
           value={email}
           onChange={(e) => [setEmail(e.target.value), setError("")]}
@@ -58,13 +68,14 @@ const Signup = () => {
         />
         <C.labelError>{error}</C.labelError>
         <Button Text="Inscrever-se" onClick={handleSignup} />
-        <C.LabelSignin>
+        <C.LabelSignin >
           Já tem uma conta?
           <C.Strong>
             <Link to="/">&nbsp;Entre</Link>
           </C.Strong>
         </C.LabelSignin>
       </C.Content>
+      <LargeLogo />
     </C.Container>
   );
 };
